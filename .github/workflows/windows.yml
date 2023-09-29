@@ -31,7 +31,12 @@ jobs:
       targetName: example.exe
       fileName: example
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          
       - name: inno setup install
-        uses: zhuzichu520/inno-setup-action@v6.2.2
+        uses: zhuzichu520/inno-setup-action@v1.0.0
         with:
           filepath: ./InstallerScript.iss
