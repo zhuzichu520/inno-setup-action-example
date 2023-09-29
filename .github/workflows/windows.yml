@@ -1,0 +1,37 @@
+name: Windows
+on: 
+  push:
+    paths:
+      - '*.txt'
+      - 'src/**'
+      - 'example/**'
+      - 'scripts/**'
+      - '.github/workflows/windows.yml'
+  pull_request:
+    paths:
+      - '*.txt'
+      - 'example/**'
+      - 'src/**'
+      - 'scripts/**'
+      - '.github/workflows/windows.yml'
+      
+jobs:
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-2019]
+        include:
+          - qt_ver: 6.5.0        
+            qt_arch: win64_msvc2019_64
+            msvc_arch: x64
+            qt_arch_install: msvc2019_64  
+    env:
+      targetName: example.exe
+      fileName: example
+    steps:
+      - name: inno setup install
+        uses: zhuzichu520/inno-setup-action@v6.2.2
+        with:
+          filepath: ./InstallerScript.iss
