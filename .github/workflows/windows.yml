@@ -40,3 +40,13 @@ jobs:
         uses: zhuzichu520/inno-setup-action@v1.0.0
         with:
           filepath: ./InstallerScript.iss
+          
+      - name: uploadRelease
+        if: startsWith(github.event.ref, 'refs/tags/')
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./bin/example.exe
+          asset_name: example.exe
+          tag: ${{ github.ref }}
+          overwrite: true 
