@@ -37,7 +37,7 @@ jobs:
           submodules: recursive
           
       - name: inno setup install
-        uses: zhuzichu520/inno-setup-action-cli@v1.0.0
+        uses: zhuzichu520/inno-setup-action@v1.0.0
         with:
           filepath: ./InstallerScript.iss
           
